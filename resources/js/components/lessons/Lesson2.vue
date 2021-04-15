@@ -13,15 +13,16 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <div class="quesion-header">１．入力値の合計を表示してください。</div>
+                        <div class="quesion-header">１．入力値の合計を表示しやがれ。</div> <!-- してください Ｖ[ﾟ ﾟ]Ｖ	 -->
                         <input type="number" v-model.number="left">
                         +
                         <input type="number" v-model.number="right">
                         =
                         {{ total }}
+                        {{ testprn}}
                     </div>
                     <div class="mb-5">
-                        <div class="quesion-header">２．年齢を表示してください。</div>
+                        <div class="quesion-header">２．年齢を表示してくださいかに。</div>
                         <label for="birthday">お誕生日は？</label>
                         <input type="date" id="birthday" v-model="birthday">
                         
@@ -53,6 +54,7 @@ export default {
             right: 0,
             birthday: null,
             count: 0,
+            testprn: 'プリン'
         }
     },
     mounted () {
@@ -63,6 +65,7 @@ export default {
     },
     computed: {
         total() {
+              return this.left + this.right
 
         },
         age() {
