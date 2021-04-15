@@ -13,16 +13,16 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <div class="quesion-header">１．入力値の合計を表示しやがれ。</div> <!-- してください Ｖ[ﾟ ﾟ]Ｖ	 -->
+                        <div class="quesion-header">１．入力値の合計をしてください。</div>
+                         <!-- 更新が反映されない件聞く	 -->
                         <input type="number" v-model.number="left">
                         +
                         <input type="number" v-model.number="right">
                         =
                         {{ total }}
-                        {{ testprn}}
                     </div>
                     <div class="mb-5">
-                        <div class="quesion-header">２．年齢を表示してくださいかに。</div>
+                        <div class="quesion-header">２．年齢を表示してください。</div>
                         <label for="birthday">お誕生日は？</label>
                         <input type="date" id="birthday" v-model="birthday">
                         
@@ -31,9 +31,10 @@
                     </div>
                     <div class="mb-5">
                         <div class="quesion-header">３．プラスボタン、マイナスボタンで数値を変更できるようにしてください。</div>
+                        <h3>てすと</h3>
                         <label>カウンター</label>
-                        <button style="width:2rem;">+</button>
-                        <button style="width:2rem;">-</button>
+                        <button style="width:2rem;" @click="add">+</button>
+                        <button style="width:2rem;" @click="red">-</button>
                         {{count}}
                     </div>
                 </div>
@@ -53,12 +54,11 @@ export default {
             left: 0,
             right: 0,
             birthday: null,
-            count: 0,
-            testprn: 'プリン'
+            count: 0
         }
     },
     mounted () {
-        //
+        
     },
     watch: {
         //
@@ -66,13 +66,19 @@ export default {
     computed: {
         total() {
               return this.left + this.right
-
+            
         },
         age() {
 
         }
     },
     methods: {
+        add: function() {
+               this.num++
+           },
+        red: function() {
+               this.num--
+           },
         onBack() {
             this.$router.push({ name: 'home' })
         }
