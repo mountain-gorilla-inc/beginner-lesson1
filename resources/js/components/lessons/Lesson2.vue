@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <div class="quesion-header">１．入力値の合計をしてください。</div>
+                        <div class="quesion-header">１.入力値の合計をしてください。</div>
                          <!-- 更新が反映されない件聞く	 -->
                         <input type="number" v-model.number="left">
                         +
@@ -23,15 +23,13 @@
                     </div>
                     <div class="mb-5">
                         <div class="quesion-header">２．年齢を表示してください。</div>
-                        <label for="birthday">お誕生日は？</label>
-                        <input type="date" id="birthday" v-model="birthday">
-                        
-                        <p v-if="age >= 0">{{ age }} 歳ですね！</p>
-                        <p v-else>お誕生日を入力してください。</p>
+                        <label for="birthday">お誕生日は？</label> <!--labelは不要だが一応残す-->
+                        <input type="date" id="birthday" v-model="birthday"> <!-- 誕生日を取得 -->
+                        <p v-if="age" >= 0">{{ age }} 歳ですね！</p>    <!-- ageが0以上なら年齢を表示 -->
+                        <p v-else>お誕生日を入力してください。</p>  <!-- それ以外ならメッセージを表示 -->
                     </div>
                     <div class="mb-5">
                         <div class="quesion-header">３．プラスボタン、マイナスボタンで数値を変更できるようにしてください。</div>
-                        <h3>てすと</h3>
                         <label>カウンター</label>
                         <button style="width:2rem;" @click="add">+</button>
                         <button style="width:2rem;" @click="red">-</button>
@@ -53,12 +51,13 @@ export default {
         return {
             left: 0,
             right: 0,
-            birthday: null,
-            count: 0
+            birthday: '2000-01-01', //初期値をいれないとうまくいかないことがあった
+            count: 0,
+            isComputed: false
         }
     },
     mounted () {
-        
+
     },
     watch: {
         //
@@ -66,10 +65,15 @@ export default {
     computed: {
         total() {
               return this.left + this.right
-            
-        },
-        age() {
+        } ,
+        age: function () {
 
+                 if (!this.birthday) {
+                   return -1 
+                 } else { 
+                   moment.locale('ja')
+                   return moment().diff(this.birthday,'years') 
+                 }
         }
     },
     methods: {
@@ -82,7 +86,8 @@ export default {
         onBack() {
             this.$router.push({ name: 'home' })
         }
-    },
+
+    }
 }
 </script>
 
