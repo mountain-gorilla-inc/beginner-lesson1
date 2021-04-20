@@ -25,14 +25,14 @@
                         <div class="quesion-header">２．年齢を表示してください。</div>
                         <label for="birthday">お誕生日は？</label> <!--labelは不要だが一応残す-->
                         <input type="date" id="birthday" v-model="birthday"> <!-- 誕生日を取得 -->
-                        <p v-if="age" >= 0">{{ age }} 歳ですね！</p>    <!-- ageが0以上なら年齢を表示 -->
+                        <p v-if = " age >= 0 " > {{ age }} 歳ですね！</p>    <!-- ageが0以上なら年齢を表示 -->
                         <p v-else>お誕生日を入力してください。</p>  <!-- それ以外ならメッセージを表示 -->
                     </div>
                     <div class="mb-5">
                         <div class="quesion-header">３．プラスボタン、マイナスボタンで数値を変更できるようにしてください。</div>
-                        <label>カウンター</label>
-                        <button style="width:2rem;" @click="add">+</button>
-                        <button style="width:2rem;" @click="red">-</button>
+                        <label>カウンターv4</label>
+                        <button style="width:2rem;" v-on:click="count++">+</button>
+                        <button style="width:2rem;" v-on:click="count--">-</button>
                         {{count}}
                     </div>
                 </div>
@@ -51,9 +51,9 @@ export default {
         return {
             left: 0,
             right: 0,
-            birthday: '2000-01-01', //初期値をいれないとうまくいかないことがあった
-            count: 0,
-            isComputed: false
+            birthday: '2002-01-01', //初期値をいれないとうまくいかないことがあった
+            isComputed: false ,
+            count: 0
         }
     },
     mounted () {
@@ -77,12 +77,12 @@ export default {
         }
     },
     methods: {
-        add: function() {
-               this.num++
+     /*   add: function() {
+               this.count++
            },
         red: function() {
-               this.num--
-           },
+               this.count--         メソッドでボタンの増減を行っていたが、ほかの方法で行うため削除
+           }, */
         onBack() {
             this.$router.push({ name: 'home' })
         }
