@@ -34,18 +34,23 @@
                                 <td class="text-center align-middle">100</td>
                                 <td class="text-center align-middle">98</td>
                             </tr>
-                            <tr class="bg-white">
-                                <td class="text-center align-middle">00002</td>
-                                <td class="text-center align-middle">商品名0002</td>
-                                <td class="text-center align-middle">200</td>
-                                <td class="text-center align-middle">198</td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td class="text-center align-middle">00003</td>
-                                <td class="text-center align-middle">商商品名0003</td>
-                                <td class="text-center align-middle">300</td>
-                                <td class="text-center align-middle">298</td>
-                            </tr>
+ 
+                            <!-- <template >     -->
+                            　　 <tr class="bg-white" v-for="inv in inventories" :key="inv.id" >   <!--商品コードを表示  :key="item.id_01" -->
+                                    <td class="text-center align-middle"> {{ inv.item_code }} </td>
+                                    <td class="text-center align-middle">
+                                        {{ inv.item_name }}
+                                    </td>
+                                     <td class="text-center align-middle">
+                                    {{ inv.stock_num }}
+                                    </td>
+                                    <td class="text-center align-middle">
+                                    {{ inv.real_stock_num }}
+                                    </td>                                    
+                                </tr>
+
+                            <!-- </template> -->
+                            
                         </tbody>
                     </table>
                 </div>
@@ -63,7 +68,7 @@ export default {
     data () {
         return {
             inventories: [
-                { id: 1, item_code: 'ITEM0001', item_name: '商品００００１', stock_num: 100, real_stock_num: 88 },
+                { id: 1, item_code: 'ITEM0001', item_name: '商品００００１', stock_num: 100, real_stock_num: 88 },  //ここがテーブル
                 { id: 2, item_code: 'ITEM0002', item_name: '商品００００２', stock_num: 200, real_stock_num: 155 },
                 { id: 3, item_code: 'ITEM0003', item_name: '商品００００３', stock_num: 300, real_stock_num: 241 },
                 { id: 4, item_code: 'ITEM0004', item_name: '商品００００４', stock_num: 400, real_stock_num: 311 },
@@ -81,7 +86,7 @@ export default {
     },
     methods: {
         onBack() {
-            this.$router.push({ name: 'home' })
+            this.$router.push({ name: 'home' }) //ここは無視でok
         }
     },
 }

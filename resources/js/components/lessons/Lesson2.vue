@@ -13,7 +13,8 @@
                         </div>
                     </div>
                     <div class="mb-5">
-                        <div class="quesion-header">１．入力値の合計を表示してください。</div>
+                        <div class="quesion-header">１.入力値の合計をしてください。</div>
+                         <!-- 更新が反映されない件聞く	 -->
                         <input type="number" v-model.number="left">
                         +
                         <input type="number" v-model.number="right">
@@ -22,17 +23,16 @@
                     </div>
                     <div class="mb-5">
                         <div class="quesion-header">２．年齢を表示してください。</div>
-                        <label for="birthday">お誕生日は？</label>
-                        <input type="date" id="birthday" v-model="birthday">
-                        
-                        <p v-if="age >= 0">{{ age }} 歳ですね！</p>
-                        <p v-else>お誕生日を入力してください。</p>
+                        <label for="birthday">お誕生日は？</label> <!--labelは不要だが一応残す-->
+                        <input type="date" id="birthday" v-model="birthday"> <!-- 誕生日を取得 -->
+                        <p v-if = " age >= 0 " > {{ age }} 歳ですね！</p>    <!-- ageが0以上なら年齢を表示 -->
+                        <p v-else>お誕生日を入力してください。</p>  <!-- それ以外ならメッセージを表示 -->
                     </div>
                     <div class="mb-5">
                         <div class="quesion-header">３．プラスボタン、マイナスボタンで数値を変更できるようにしてください。</div>
-                        <label>カウンター</label>
-                        <button style="width:2rem;">+</button>
-                        <button style="width:2rem;">-</button>
+                        <label>カウンターv4</label>
+                        <button style="width:2rem;" v-on:click="count++">+</button>
+                        <button style="width:2rem;" v-on:click="count--">-</button>
                         {{count}}
                     </div>
                 </div>
@@ -51,29 +51,43 @@ export default {
         return {
             left: 0,
             right: 0,
-            birthday: null,
-            count: 0,
+            birthday: '2002-01-01', //初期値をいれないとうまくいかないことがあった
+            isComputed: false ,
+            count: 0
         }
     },
     mounted () {
-        //
+
     },
     watch: {
         //
     },
     computed: {
         total() {
+              return this.left + this.right
+        } ,
+        age: function () {
 
-        },
-        age() {
-
+                 if (!this.birthday) {
+                   return -1 
+                 } else { 
+                   moment.locale('ja')
+                   return moment().diff(this.birthday,'years') 
+                 }
         }
     },
     methods: {
+     /*   add: function() {
+               this.count++
+           },
+        red: function() {
+               this.count--         メソッドでボタンの増減を行っていたが、ほかの方法で行うため削除
+           }, */
         onBack() {
             this.$router.push({ name: 'home' })
         }
-    },
+
+    }
 }
 </script>
 
