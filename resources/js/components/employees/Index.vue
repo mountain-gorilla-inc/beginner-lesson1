@@ -25,12 +25,12 @@
                                 <th class="text-center">権限</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody>
                             <tr v-for="employee in employees" class="clickable" :key="employee.id" @click="onShow(employee.id)">
-                                <td class="text-center align-middle">{{employee.full_name}}</td>
-                                <td class="text-center align-middle">{{employee.full_phonetic_name}}</td>
-                                <td class="text-center align-middle">{{employee.user_name}}</td>
+                                <td class="text-center align-middle">{{ employee.full_name }}</td>
+                                <td class="text-center align-middle">{{ employee.full_phonetic_name }}</td>
+                                <td class="text-center align-middle">{{ employee.user_name }}</td>
                                 <td class="text-center align-middle">
                                     <div v-if="employee.is_admin">管理者</div>
                                     <div v-if="employee.is_leader">リーダー</div>
@@ -47,10 +47,10 @@
 </template>
 
 <script>
-import moment from 'moment';
+import moment from 'moment'
 export default {
     props: [
-        
+
     ],
     data () {
         return {
@@ -70,21 +70,19 @@ export default {
     },
     methods: {
         getItems: function () {
-            this.isLoading = true;
-            const api = axios.create()
-            axios.all([
-                api.get('/api/employee'),
-            ]).then(axios.spread((res1, res2, res3, res4) => {
-                this.employees = res1.data
-                
-                this.isLoading = false
-            }))
+            this.isLoading = true
+            axios.get('/api/employee')
+                .then((res) => {
+                    this.employees = res.data
+
+                    this.isLoading = false
+                })
         },
         onCreate: function () {
             this.$router.push({ name: 'employee.create' })
         },
         onShow: function (employee_id) {
-            this.$router.push({ name: 'employee.show', params: {employee_id: employee_id} })
+            this.$router.push({ name: 'employee.show', params: { employee_id: employee_id } })
         },
         onBack: function () {
             this.$router.go(-1)

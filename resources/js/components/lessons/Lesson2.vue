@@ -24,7 +24,7 @@
                         <div class="quesion-header">２．年齢を表示してください。</div>
                         <label for="birthday">お誕生日は？</label>
                         <input type="date" id="birthday" v-model="birthday">
-                        
+
                         <p v-if="age >= 0">{{ age }} 歳ですね！</p>
                         <p v-else>お誕生日を入力してください。</p>
                     </div>
@@ -33,7 +33,7 @@
                         <label>カウンター</label>
                         <button style="width:2rem;">+</button>
                         <button style="width:2rem;">-</button>
-                        {{count}}
+                        {{ count }}
                     </div>
                 </div>
             </div>

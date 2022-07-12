@@ -81,8 +81,6 @@ const router = new VueRouter({
     routes: [
         // ホーム
         { name: 'home', path: '/', component: require('./components/HomeComponent.vue').default },
-        // mock
-        // { name: 'mock', path: '/mock', component: require('./components/mocks/MockBarcode.vue').default },
 
         // 包装ライン日報
         { name: 'report', path: '/report', component: require('./components/reports/Index.vue').default },

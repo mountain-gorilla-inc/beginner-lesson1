@@ -12,7 +12,7 @@
                             <button type="button" class="btn btn-dark" @click="onBack">戻る</button>
                         </div>
                     </div>
-                    
+
                     <div class="quesion-header">APIを使って取得したデータを表示しましょう</div>
                     <div class="d-flex flex-wrap justify-content-start mt-1 mb-2">
                         <div class="d-flex mr-3">
@@ -58,7 +58,7 @@ export default {
             // WebAPIとは
             // https://qiita.com/NagaokaKenichi/items/df4c8455ab527aeacf02
             // API呼出しの基本形
-            const {data} = await axios.get('https://randomuser.me/api/')
+            const { data } = await axios.get('https://randomuser.me/api/')
             // 取得したデータはchromeのデバッグツールで確認できます。
             // https://qiita.com/nonkapibara/items/8b587013b6b817d6dfc4
             this.items = data

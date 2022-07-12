@@ -38,17 +38,20 @@
 
                         <tbody>
                             <tr class="bg-white" v-for="(inventory, index) in filterInventories" :key="index">
-                                <td class="text-center align-middle">{{inventory.item_code}}</td>
-                                <td class="text-center align-middle">{{inventory.item_name}}</td>
-                                <td class="text-center align-middle">{{inventory.stock_num}}</td>
-                                <td class="text-center align-middle">{{inventory.real_stock_num}}</td>
+                                <td class="text-center align-middle">{{ inventory.item_code }}</td>
+                                <td class="text-center align-middle">{{ inventory.item_name }}</td>
+                                <td class="text-center align-middle">{{ inventory.stock_num }}</td>
+                                <td class="text-center align-middle">{{ inventory.real_stock_num }}</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <hr>
                     <div class="alert alert-warning" role="alert">
-                        <i class="fas fa-book-reader"></i> 在庫数でフィルタリングしてみましょう。（例）200と入力したら在庫数が200以上の物を表示
+                        <i class="fas fa-book-reader"></i> 商品コードでフィルタリングしてみましょう。（例）ITEM0001と入力したら商品コードがITEM0001の商品を表示
+                    </div>
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-book-reader"></i> 在庫数でもフィルタリングできるようにしてみましょう。（例）200と入力したら在庫数が200以上の商品を表示
                     </div>
                 </div>
             </div>

@@ -31,12 +31,12 @@
                                 <input type="text" class="form-control" id="phonetic_name" v-model="item.phonetic_name"/>
                             </div>
                         </div>
-                        
+
                         <div class="row-line">
                             <transition name="fade" mode="out-in">
-                            <div class="alert alert-danger" role="alert" v-if="invalid">
-                            {{errorMessage}}
-                            </div>
+                                <div class="alert alert-danger" role="alert" v-if="invalid">
+                                    {{ errorMessage }}
+                                </div>
                             </transition>
                         </div>
                     </form>
@@ -47,7 +47,7 @@
                         <div class="mr-3">
                             <button type="button" class="btn btn-dark" @click="onBack">キャンセル</button>
                         </div>
-                        <div v-if="mode!='create'">
+                        <div v-if="mode !== 'create'">
                             <button type="button" class="btn btn-primary" @click="onStore">保存する</button>
                         </div>
                         <div v-else>
@@ -63,7 +63,6 @@
 </template>
 
 <script>
-import moment from 'moment';
 export default {
     props: [
         'item_id',
@@ -74,7 +73,7 @@ export default {
                 id: '',
                 name: '',
                 phonetic_name: '',
-            },        
+            },
             invalid: false,
             errorMessage: '',
 
@@ -86,14 +85,14 @@ export default {
         this.getItems()
     },
     watch: {
-        // 
+        //
     },
     computed: {
         own: function () {
             return this.$store.state.user
         },
         title: function () {
-            return this.mode == 'create' ? '商品の新規作成' : '商品の編集'
+            return this.mode === 'create' ? '商品の新規作成' : '商品の編集'
         },
         mode: function () {
             return this.item_id ? 'update' : 'create'
@@ -107,34 +106,20 @@ export default {
     },
     methods: {
         getItems: function () {
-            this.isLoading = true;
-            const api = axios.create()
-            if (this.mode == "create") {
-                // axios.all([
-                //     api.get('/api/factory/selector'),
-                //     api.get('/api/department/selector'),
-                // ]).then(axios.spread((res1, res2, res3) => {
-                //     this.factories = res1.data
-                //     this.departments = res2.data
-                // }))
+            this.isLoading = true
+            if (this.mode === 'create') {
                 this.isLoading = false
             } else {
-                axios.all([
-                    api.get('/api/item/'+this.item_id),
-                    // api.get('/api/factory/selector'),
-                    // api.get('/api/department/selector'),
-                ]).then(axios.spread((res1, res2, res3) => {
-                    this.item = res1.data
-                    // this.factories = res2.data
-                    // this.departments = res3.data
-                    this.isLoading = false
-                }))
+                axios.get('/api/item/' + this.item_id)
+                    .then((res) => {
+                        this.item = res.data
+                        this.isLoading = false
+                    })
             }
         },
         onStore: function () {
             this.invalid = false
 
-            
             if (!this.item.code) {
                 this.errorMessage = '商品コードを入力してください。'
                 this.invalid = true
@@ -146,39 +131,38 @@ export default {
                 return
             }
 
-            let _this = this
-            if (this.mode == 'create') {
+            if (this.mode === 'create') {
                 axios.post('/api/item', {
                     item: this.item,
                 })
-                .then(function (resp) {
-                    if (resp.data.result) {
-                        alert('登録しました。')
-                        _this.$router.go(-1)
-                    } else {
-                        _this.errorMessage = resp.data.errorMessage
-                        _this.invalid = true
-                    }
-                })
-                .catch(function (resp) {
-                    console.log(resp)
-                });
+                    .then((resp) => {
+                        if (resp.data.result) {
+                            alert('登録しました。')
+                            this.$router.go(-1)
+                        } else {
+                            this.errorMessage = resp.data.errorMessage
+                            this.invalid = true
+                        }
+                    })
+                    .catch((resp) => {
+                        console.log(resp)
+                    })
             } else {
-                axios.put('/api/item/'+this.item.id, {
+                axios.put('/api/item/' + this.item.id, {
                     item: this.item,
                 })
-                .then(function (resp) {
-                    if (resp.data.result) {
-                        alert('更新しました。')
-                        _this.$router.go(-1)
-                    } else {
-                        _this.errorMessage = resp.data.errorMessage
-                        _this.invalid = true
-                    }
-                })
-                .catch(function (resp) {
-                    console.log(resp)
-                });
+                    .then((resp) => {
+                        if (resp.data.result) {
+                            alert('更新しました。')
+                            this.$router.go(-1)
+                        } else {
+                            this.errorMessage = resp.data.errorMessage
+                            this.invalid = true
+                        }
+                    })
+                    .catch((resp) => {
+                        console.log(resp)
+                    })
             }
         },
         onBack: function () {
@@ -188,18 +172,14 @@ export default {
             if (!confirm('削除してもよろしいですか？')) {
                 return
             }
-            let _this = this
-            axios.delete('/api/item/'+this.item.id)
-            .then(function (resp) {
-                alert('削除しました。')
-                _this.$router.go(-1)
-            })
-            .catch(function (resp) {
-                console.log(resp)
-            })
-            .finally(function () {
-                //
-            })
+            axios.delete('/api/item/' + this.item.id)
+                .then(() => {
+                    alert('削除しました。')
+                    this.$router.go(-1)
+                })
+                .catch((resp) => {
+                    console.log(resp)
+                })
         },
 
     },
