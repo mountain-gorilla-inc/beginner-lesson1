@@ -8,7 +8,7 @@
     - https://bluebirdofoz.hatenablog.com/entry/2019/10/24/221517
     - https://qiita.com/taki-ikat/items/f501f44a8d44e3fd6987
 
-### Setup
+### Setup（Docker使用時）
 
 ```sh
 make init
