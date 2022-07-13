@@ -16,7 +16,7 @@ make init
 
 ![image](https://user-images.githubusercontent.com/74036050/178633787-df4d6cac-b8d9-4047-8217-d8315244b23f.png)
 
-ブラウザにてhttp://127.0.0.1:8080/へアクセス
+ブラウザにて http://127.0.0.1:8080 へアクセス
 
 ユーザID:user01
 パスワード:1234
