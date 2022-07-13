@@ -18,8 +18,8 @@
                         API <code>axios.get('/api/lesson/selector')</code> を使ってコントローラからデータを取得する。<br>
                         参考：<br>
                         テーブル定義：
-                        <a href="https://drive.google.com/file/d/1EFdre_IfiSqW5nedBoryuuUE8pzHgfvs/view?usp=sharing" target="_blank">
-                            https://drive.google.com/file/d/1EFdre_IfiSqW5nedBoryuuUE8pzHgfvs/view?usp=sharing
+                        <a href="https://drive.google.com/file/d/1ZU352PFrJ6rtAvvu2vpdrUrGxDsOR4vW/view?usp=sharing" target="_blank">
+                            https://drive.google.com/file/d/1ZU352PFrJ6rtAvvu2vpdrUrGxDsOR4vW/view?usp=sharing
                         </a>（商品）<br>
                     </p>
                     <div class="alert alert-info" role="alert">
@@ -32,8 +32,9 @@
                     <div class="quesion-header">２．新規テーブル（customers）を作成してそのデータを画面に表示しましょう</div>
                     <p>
                         参考：<br>
-                        テーブル定義：<a href="https://drive.google.com/file/d/1EFdre_IfiSqW5nedBoryuuUE8pzHgfvs/view?usp=sharing" target="_blank">
-                            https://drive.google.com/file/d/1EFdre_IfiSqW5nedBoryuuUE8pzHgfvs/view?usp=sharing
+                        テーブル定義：
+                        <a href="https://drive.google.com/file/d/1ZU352PFrJ6rtAvvu2vpdrUrGxDsOR4vW/view?usp=sharing" target="_blank">
+                            https://drive.google.com/file/d/1ZU352PFrJ6rtAvvu2vpdrUrGxDsOR4vW/view?usp=sharing
                         </a>（顧客）<br>
                         テーブル定義を参考にテーブルを作成する。<br>
                     </p>
