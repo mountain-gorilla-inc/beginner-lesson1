@@ -23,6 +23,7 @@ init:
 	docker-compose exec app php artisan storage:link
 	docker-compose exec app php artisan migrate:fresh --seed
 	docker-compose exec app php artisan key:generate
+	docker-compose exec app php artisan passport:install --no-interaction --force
 	docker-compose exec web npm install
 	docker-compose exec web npm run watch
 remake:
